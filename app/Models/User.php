@@ -46,7 +46,13 @@ class User extends Authenticatable
 
     public function isAdmin() {
         return $this->is_admin === 1;
-     }
+    }
+
+    public function isAdminCheck() {
+        if($this->is_admin === 1){
+            return 1;
+        }
+    }
  
      public function isUser() {
         return $this->is_admin === 0;

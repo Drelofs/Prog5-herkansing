@@ -51,4 +51,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function () {
         Route::get('/', 'HomeController@index')->name('admin_dashboard');
     });
+
+    Route::resource('cars',CarsController::class);
 });
