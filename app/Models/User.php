@@ -44,6 +44,14 @@ class User extends Authenticatable
         $this->attributes['password'] = bcrypt($value);
     }
 
+    public function isAdmin() {
+        return $this->is_admin === 1;
+     }
+ 
+     public function isUser() {
+        return $this->is_admin === 0;
+     }
+
     /**
      * The attributes that should be cast.
      *

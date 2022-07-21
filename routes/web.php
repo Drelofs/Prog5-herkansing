@@ -41,4 +41,14 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
          */
         Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
     });
+
+    // user protected routes
+    Route::group(['middleware' => ['auth', 'user'], 'prefix' => 'user'], function () {
+        Route::get('/', 'HomeController@index')->name('user_dashboard');
+    });
+
+    // admin protected routes
+    Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function () {
+        Route::get('/', 'HomeController@index')->name('admin_dashboard');
+    });
 });

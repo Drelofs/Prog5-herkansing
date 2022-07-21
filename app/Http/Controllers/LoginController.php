@@ -51,6 +51,15 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user) 
     {
-        return redirect()->intended();
+        if($user->isAdmin()) {
+            return redirect(route('admin_dashboard'));
+        }
+
+        // to user dashboard
+        else if($user->isUser()) {
+            return redirect(route('/'));
+        }
+
+        abort(404);
     }
 }
