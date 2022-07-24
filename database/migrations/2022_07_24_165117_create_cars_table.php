@@ -21,6 +21,7 @@ return new class extends Migration
             $table->longText('description');
             $table->integer('price');
             $table->timestamps();
+ 
         });
     }
 

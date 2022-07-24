@@ -1,15 +1,18 @@
 @extends('layouts.app-master')
 
 @section('title')
-    Cars
+    Cars | Programmeren 5
 @endsection
 @section('content')
 <div class="row">
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title"> Product</h4>
+                <h4 class="card-title"> Cars</h4>
             </div>
+            <a href="{{ route('car.create') }}" title="Create">
+                <i class="material-icons">create</i>
+            </a>
             <div class="card-body">
                 <div>
                     <table class="table" id="product_table">
@@ -53,7 +56,19 @@
                                         {{ $row->created_at }}
                                     </td>
                                     <td class="text-right action_buttons">
-                                       
+                                        <form id="delete_form" action="{{ route('car.destroy',$row->id) }}" method="POST">
+                                            <a href="{{ route('car.show', $row->id) }}" title="Show Car">
+                                                <i class="material-icons">preview</i>
+                                            </a>
+                                            <a href="{{ route('car.edit', $row->id) }}" title="Edit">
+                                                <i class="material-icons">edit</i>
+                                            </a>
+                                            @csrf
+                                            @method('DELETE')
+                                            <a href="javascript:void(0);" onclick="document.getElementById('delete_form').submit();">
+                                                <i class="material-icons">delete</i>
+                                            </a>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

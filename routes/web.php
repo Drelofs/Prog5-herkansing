@@ -52,5 +52,5 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::get('/', 'HomeController@index')->name('admin_dashboard');
     });
 
-    Route::resource('cars',CarsController::class);
+    Route::resource('car',CarController::class);
 });

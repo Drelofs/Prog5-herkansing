@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Cars;
+use App\Models\Car;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class CarsPolicy
+class CarPolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class CarsPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Cars  $cars
+     * @param  \App\Models\Car  $car
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Cars $cars)
+    public function view(User $user, Car $car)
     {
         //
     }
@@ -48,10 +48,10 @@ class CarsPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Cars  $cars
+     * @param  \App\Models\Car  $car
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Cars $cars)
+    public function update(User $user, Car $car)
     {
         //
     }
@@ -60,10 +60,10 @@ class CarsPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Cars  $cars
+     * @param  \App\Models\Car  $car
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Cars $cars)
+    public function delete(User $user, Car $car)
     {
         //
     }
@@ -72,10 +72,10 @@ class CarsPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Cars  $cars
+     * @param  \App\Models\Car  $car
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Cars $cars)
+    public function restore(User $user, Car $car)
     {
         //
     }
@@ -84,10 +84,10 @@ class CarsPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Cars  $cars
+     * @param  \App\Models\Car  $car
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Cars $cars)
+    public function forceDelete(User $user, Car $car)
     {
         //
     }
