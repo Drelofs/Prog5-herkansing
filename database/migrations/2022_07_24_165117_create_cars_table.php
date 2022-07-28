@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('year');
             $table->longText('description');
             $table->integer('price');
+            $table->integer('user_id');
             $table->timestamps();
  
         });

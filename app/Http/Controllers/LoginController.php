@@ -57,7 +57,7 @@ class LoginController extends Controller
 
         // to user dashboard
         else if($user->isUser()) {
-            return redirect(route('/'));
+            return redirect()->intended();
         }
 
         abort(404);

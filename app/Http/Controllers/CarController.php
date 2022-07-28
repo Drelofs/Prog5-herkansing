@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCarRequest;
 use App\Http\Requests\UpdateCarRequest;
 use App\Models\Car;
+use Illuminate\Support\Facades\DB;
+
 
 class CarController extends Controller
 {
@@ -14,8 +16,10 @@ class CarController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $cars = Car::all();
+    {   
+        $user_id = auth()->id();
+        // $cars = Car::all();
+        $cars = DB::table('cars')->where('user_id', '=', $user_id)->get();
         return view('car.index', compact('cars'));
     }
 
@@ -43,6 +47,7 @@ class CarController extends Controller
             'year' => 'required',
             'description'  => 'required',
             'price'  => 'required',
+            'user_id' => 'required'
 
         ]);        
         Car::create($request->all());        

@@ -18,20 +18,21 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     /**
      * Home Routes
      */
-    Route::get('/', 'HomeController@index')->name('home.index');
+    // Route::get('/', 'HomeController@index')->name('home.index');
+    Route::get('/', array('as' => 'home', 'uses' => 'HomeController@index'))->name('home.index');
 
     Route::group(['middleware' => ['guest']], function() {
         /**
          * Register Routes
          */
-        Route::get('/register', 'RegisterController@show')->name('register.show');
-        Route::post('/register', 'RegisterController@register')->name('register.perform');
+        Route::get('/register', 'RegisterController@show')->name('register');
+        Route::post('/register', 'RegisterController@register')->name('register');
 
         /**
          * Login Routes
          */
-        Route::get('/login', 'LoginController@show')->name('login.show');
-        Route::post('/login', 'LoginController@login')->name('login.perform');
+        Route::get('/login', 'LoginController@show')->name('login');
+        Route::post('/login', 'LoginController@login')->name('login');
 
     });
 
@@ -39,7 +40,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         /**
          * Logout Routes
          */
-        Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
+        Route::get('/logout', 'LogoutController@perform')->name('logout');
     });
 
     // user protected routes
@@ -52,5 +53,5 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::get('/', 'HomeController@index')->name('admin_dashboard');
     });
 
-    Route::resource('car',CarController::class);
+    Route::resource('car',CarController::class)->middleware('auth');
 });
