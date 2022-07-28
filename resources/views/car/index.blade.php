@@ -56,18 +56,18 @@
                                         {{ $row->created_at }}
                                     </td>
                                     <td class="text-right action_buttons">
-                                        <form id="delete_form" action="{{ route('car.destroy',$row->id) }}" method="POST">
-                                            <a href="{{ route('car.show', $row->id) }}" title="Show Car">
-                                                <i class="material-icons">preview</i>
-                                            </a>
-                                            <a href="{{ route('car.edit', $row->id) }}" title="Edit">
-                                                <i class="material-icons">edit</i>
-                                            </a>
-                                            @csrf
-                                            @method('DELETE')
-                                            <a href="javascript:void(0);" onclick="document.getElementById('delete_form').submit();">
-                                                <i class="material-icons">delete</i>
-                                            </a>
+                                        <a href="{{ route('car.show', $row->id) }}" title="Show Car">
+                                            <i class="material-icons">preview</i>
+                                        </a>
+                                        <a href="{{ route('car.edit', $row->id) }}" title="Edit">
+                                            <i class="material-icons">edit</i>
+                                        </a>
+                                        @csrf
+                                        @method('DELETE')
+                                        <form action="{{ url('car' , $row->id ) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                            <button>Delete</button>
                                         </form>
                                     </td>
                                 </tr>
