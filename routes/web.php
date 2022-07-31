@@ -19,7 +19,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
      * Home Routes
      */
     // Route::get('/', 'HomeController@index')->name('home.index');
-    Route::get('/', array('as' => 'home', 'uses' => 'HomeController@index'))->name('home.index');
+    Route::get('/', array('as' => 'home', 'uses' => 'HomeController@index'))->name('home');
 
     Route::group(['middleware' => ['guest']], function() {
         /**
@@ -53,5 +53,5 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::get('/', 'HomeController@index')->name('admin_dashboard');
     });
 
-    Route::resource('car',CarController::class)->middleware('auth');
+    Route::resource('car', CarController::class)->middleware('auth');
 });

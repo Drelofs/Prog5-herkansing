@@ -1,22 +1,20 @@
 @extends('layouts.app-master')
 
 @section('title')
-    Cars | Programmeren 5
+    Your cars
 @endsection
 @section('content')
 <div class="row">
     <div class="col-md-12">
-        <div class="card">
+        <div class="card mt-4">
             <div class="card-header">
-                <h4 class="card-title"> Cars</h4>
+                <h4 class="card-title"> Your cars</h4>
             </div>
-            <a href="{{ route('car.create') }}" title="Create">
-                <i class="material-icons">create</i>
-            </a>
             <div class="card-body">
+                <a href="{{ route('car.create') }}" title="Create" class="btn btn-success">Add new car</a>
                 <div>
                     <table class="table" id="product_table">
-                        <thead class=" text-primary">
+                        <thead class=" text-dark">
                             <th>
                                 Name
                             </th>
@@ -34,43 +32,45 @@
                             </th>
                        
                             <th class="text-right">
+                                Actions
                             </th>
                         </thead>
                         <tbody>
                             @foreach ($cars as $row)
-                                <tr>
-                                    <td>
-                                        {{ $row->name }}
-                                    </td>
-                                    <td>
-                                        {{ $row->model }}
-                                    </td>
-                                    <td>
-                                        {{ $row->year }}
-                                    </td>
-                                    <td>
-                                        {{ $row->price }}
-                                    </td>
-                          
-                                    <td>
-                                        {{ $row->created_at }}
-                                    </td>
-                                    <td class="text-right action_buttons">
-                                        <a href="{{ route('car.show', $row->id) }}" title="Show Car">
-                                            <i class="material-icons">preview</i>
-                                        </a>
-                                        <a href="{{ route('car.edit', $row->id) }}" title="Edit">
-                                            <i class="material-icons">edit</i>
-                                        </a>
-                                        @csrf
-                                        @method('DELETE')
-                                        <form action="{{ url('car' , $row->id ) }}" method="POST">
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
-                                            <button>Delete</button>
-                                        </form>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>
+                                    {{ $row->name }}
+                                </td>
+                                <td>
+                                    {{ $row->model }}
+                                </td>
+                                <td>
+                                    {{ $row->year }}
+                                </td>
+                                <td>
+                                    {{ $row->price }}
+                                </td>
+                        
+                                <td>
+                                    {{ $row->created_at }}
+                                </td>
+                                <td class="text-right action_buttons">
+                                    <a href="{{ route('car.show', $row->id) }}" title="Show Car" class="btn btn-dark">Open</a>
+                                    <a href="{{ route('car.edit', $row->id) }}" title="Edit" class="btn btn-dark">Edit</a>
+                                    @csrf
+                                    @method('DELETE')
+                                    <form action="{{ url('car' , $row->id ) }}" method="POST" class="d-inline">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        <button class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @empty(!$cars)
+                            <tr>
+                                <span>You have no cars in your collection...</span>
+                            </tr>
+                            @endempty
                             @endforeach
                         </tbody>
                     </table>
