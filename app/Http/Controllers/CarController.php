@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCarRequest;
 use App\Http\Requests\UpdateCarRequest;
+use Illuminate\Http\Request;
 use App\Models\Car;
 use Illuminate\Support\Facades\DB;
 
@@ -21,6 +22,20 @@ class CarController extends Controller
         // $cars = Car::all();
         $cars = DB::table('cars')->where('user_id', '=', $user_id)->get();
         return view('car.index', compact('cars'));
+    }
+
+    public function search(Request $request){
+        // Get the search value from the request
+        $q = $request->input('search');
+    
+        // Search in the title and body columns from the posts table
+        $cars = Car::query()
+            ->where('name', 'LIKE', "%{$q}%")
+            ->orWhere('description', 'LIKE', "%{$q}%")
+            ->get();
+    
+        // Return the search view with the resluts compacted
+        return view('car.search', compact('cars'));
     }
 
     /**

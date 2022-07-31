@@ -54,4 +54,5 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     });
 
     Route::resource('car', CarController::class)->middleware('auth');
+    Route::get('/search/', 'CarController@search')->name('search');
 });
