@@ -38,7 +38,7 @@ class LoginController extends Controller
 
         Auth::login($user);
 
-        return $this->authenticated($request, $user);
+        return $this->redirectTo($request, $user);
     }
 
     /**
@@ -51,15 +51,21 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user) 
     {
-        if($user->isAdmin()) {
-            return redirect(route('admin_dashboard'));
-        }
 
         // to user dashboard
-        else if($user->isUser()) {
+        if($user->isUser()) {
             return redirect()->intended();
         }
 
         abort(404);
     }
+
+    protected function redirectTo(){
+        if (Auth::user()->user_type == 'Administrator'){
+            return redirect()->to('admin');  // admin dashboard path
+        } 
+        else {
+            return redirect()->intended();  // member dashboard path
+        }
+}
 }
