@@ -9,8 +9,11 @@
           <li><a href="{{  url('') }}" class="nav-link px-2 text-white">Home</a></li>
           @auth
           <li><a href="{{ url('car') }}" class="nav-link px-2 text-white">Cars</a></li>
+          @if(auth()->user()->user_type === "Administrator")
+                <li><a href="admin" class="nav-link px-2 text-white">Admin</a></li>
+          @endif
           @endauth
-        </ul>
+          </ul>
         <form action="{{ route('search') }}" method="GET" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
           <input type="search" name="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
         </form>

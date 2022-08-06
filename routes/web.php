@@ -49,7 +49,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     });
 
     Route::resource('car', CarController::class)->middleware('auth');
-    Route::get('/search/', 'CarController@search')->name('search');
+    Route::get('search/', 'CarController@search')->name('search');
 
     Route::middleware(['auth', 'isAdmin'])->group(function () {
         Route::get('/admin', function () {

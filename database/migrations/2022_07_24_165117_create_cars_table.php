@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('year');
             $table->longText('description');
             $table->integer('price');
+            $table->enum('type', ['SUV', 'Hatchback', 'Convertible', 'Sedan']);                        
             $table->integer('user_id');
             $table->timestamps();
  
