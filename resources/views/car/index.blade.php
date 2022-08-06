@@ -36,42 +36,43 @@
                             </th>
                         </thead>
                         <tbody>
-                            @foreach ($cars as $row)
-                            <tr>
-                                <td>
-                                    {{ $row->name }}
-                                </td>
-                                <td>
-                                    {{ $row->model }}
-                                </td>
-                                <td>
-                                    {{ $row->year }}
-                                </td>
-                                <td>
-                                    {{ $row->price }}
-                                </td>
-                        
-                                <td>
-                                    {{ $row->created_at }}
-                                </td>
-                                <td class="text-right action_buttons">
-                                    <a href="{{ route('car.show', $row->id) }}" title="Show Car" class="btn btn-dark">Open</a>
-                                    <a href="{{ route('car.edit', $row->id) }}" title="Edit" class="btn btn-dark">Edit</a>
-                                    @csrf
-                                    @method('DELETE')
-                                    <form action="{{ url('car' , $row->id ) }}" method="POST" class="d-inline">
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-                                        <button class="btn btn-danger">Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
-                            @empty(!$cars)
-                            <tr>
-                                <span>You have no cars in your collection...</span>
-                            </tr>
-                            @endempty
-                            @endforeach
+                            @if($cars->isNotEmpty())
+                                @foreach ($cars as $row)
+                                <tr>
+                                    <td>
+                                        {{ $row->name }}
+                                    </td>
+                                    <td>
+                                        {{ $row->model }}
+                                    </td>
+                                    <td>
+                                        {{ $row->year }}
+                                    </td>
+                                    <td>
+                                        {{ $row->price }}
+                                    </td>
+                            
+                                    <td>
+                                        {{ $row->created_at }}
+                                    </td>
+                                    <td class="text-right action_buttons">
+                                        <a href="{{ route('car.show', $row->id) }}" title="Show Car" class="btn btn-dark">Open</a>
+                                        <a href="{{ route('car.edit', $row->id) }}" title="Edit" class="btn btn-dark">Edit</a>
+                                        @csrf
+                                        @method('DELETE')
+                                        <form action="{{ url('car' , $row->id ) }}" method="POST" class="d-inline">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                            <button class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach
+                                @else
+                                <tr>
+                                    <td><span>You have no cars in your collection...</span></td>
+                                </tr>
+                            @endif
                         </tbody>
                     </table>
                 </div>

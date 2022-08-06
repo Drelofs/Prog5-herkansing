@@ -32,6 +32,9 @@ class CarController extends Controller
         $cars = Car::query()
             ->where('name', 'LIKE', "%{$q}%")
             ->orWhere('description', 'LIKE', "%{$q}%")
+            ->orWhere('model', 'LIKE', "%{$q}%")
+            ->orWhere('year', 'LIKE', "%{$q}%")
+            // ->join('cars', 'cars.user_id', '=', 'users.id')
             ->get();
     
         // Return the search view with the resluts compacted
