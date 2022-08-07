@@ -10,7 +10,7 @@
           @auth
           <li><a href="{{ url('car') }}" class="nav-link px-2 text-white">Cars</a></li>
           @if(auth()->user()->user_type === "Administrator")
-                <li><a href="admin" class="nav-link px-2 text-white">Admin</a></li>
+                <li><a href="admin" class="nav-link px-2 text-white">Admin-panel</a></li>
           @endif
           @endauth
           </ul>

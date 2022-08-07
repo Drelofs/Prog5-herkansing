@@ -16,6 +16,9 @@
                     <table class="table" id="product_table">
                         <thead class=" text-dark">
                             <th>
+                                
+                            </th>
+                            <th>
                                 Name
                             </th>
                             <th>
@@ -32,13 +35,14 @@
                             </th>
                        
                             <th class="text-right">
-                                Actions
+                                
                             </th>
                         </thead>
                         <tbody>
                             @if($cars->isNotEmpty())
                                 @foreach ($cars as $row)
                                 <tr>
+                                    <td><img class="rounded" width="150" src="{{ asset('images/' . $row->image_path) }}"></td>
                                     <td>
                                         {{ $row->name }}
                                     </td>

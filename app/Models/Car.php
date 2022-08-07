@@ -19,6 +19,7 @@ class Car extends Model
         'description',
         'price',
         'created_at',
+        'image_path',
         'user_id'
     ];
 }

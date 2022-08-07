@@ -57,18 +57,33 @@ class CarController extends Controller
      * @param  \App\Http\Requests\StoreCarRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCarRequest $request)
+    public function store(Request $request)
     {
         $request->validate([
             'name' => 'required',
             'model' => 'required',
-            'year' => 'required',
+            'year' => 'required|integer|min:1900|max:2022',
             'description'  => 'required',
+            'image' => 'required|mimes:jpeg,jpg,bmp,png|max:16384',
             'price'  => 'required',
             'user_id' => 'required'
 
-        ]);        
-        Car::create($request->all());        
+        ]);
+
+        $newImageName = time() . '-' . $request->name . '.' . $request->image->extension();
+
+        $request->image->move(public_path('images'), $newImageName);
+
+        $car = Car::create([
+            'name' => $request->input('name'),
+            'model' => $request->input('model'),
+            'year' => $request->input('year'),
+            'description' => $request->input('description'),
+            'price' => $request->input('price'),
+            'user_id' => auth()->id(),
+            'image_path' => $newImageName
+        ]);
+             
         return redirect()->route('car.index')->with('success', 'Car created successfully.');
     }
 
