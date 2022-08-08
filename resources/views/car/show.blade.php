@@ -17,12 +17,44 @@
         </ul>
     </div>
 @endif
-<div class="car_info">
-    <h3>{{ $car->name }} {{ $car->model }}</h3>
-    <div class="car_details">
-        <span>Year: </span><span>{{ $car->year }}</span>
-        <span>Price: </span><span>€ {{ $car->price }}</span>
-        <span>Description: </span><span>{{ $car->description }}</span>
+
+<div class="row d-flex justify-content-center mt-4 py-2">
+    <div class="back-link">
+        <i class="fa-solid fa-arrow-left text-white"></i><a class="text-decoration-none text-white mx-1" href="{{ url()->previous() }}">Go Back</a>
+    </div>
+    <div class="card bg-dark text-white col-xs-12 col-sm-12 col-md-12 mt-2 p-4">
+        <h1><strong>{{ $car->name }}</strong> {{ $car->model }}</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-4">
+                    <img class="rounded img-fluid" src="{{ asset('images/' . $car->image_path) }}">
+                    <div class="actions-buttons w-100 py-2">
+                        <a href="{{ route('car.edit', $car->id) }}" title="Edit" class="btn btn-light col-12 mb-2">Edit car</a>
+                        @csrf
+                        @method('DELETE')
+                        <form action="{{ url('car' , $car->id ) }}" method="POST" class="">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <button class="btn btn-danger col-12">Delete car</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-8">
+                    <h2>Info</h2>
+                    <div class="d-block">
+                        <strong>Year: </strong><span>{{ $car->year }}</span>
+                    </div>
+                    <div class="d-block">
+                        <strong>Price: </strong><span>€{{ number_format($car->price) }}</span>
+                    </div>
+                    <div class="d-block mt-4">
+                        {{-- <strong>Description: </strong><span>{{ $car->description }}</span> --}}
+                        <h3>Description</h3>
+                        {{ $car->description }}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

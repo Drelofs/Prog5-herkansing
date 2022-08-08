@@ -1,10 +1,7 @@
 @extends('layouts.app-master')
 
 @section('content')
-    <div class="bg-light p-5 rounded">
-        @auth
-            {{-- <h2>Admin motherfucker</h2> --}}
-        @endauth
+    <div class="bg-dark text-white p-5 rounded mt-4">
 
         @auth
         <h1>Dashboard</h1>

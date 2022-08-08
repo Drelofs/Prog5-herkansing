@@ -10,8 +10,13 @@
 
     <!-- Bootstrap core CSS -->
     <link href="{!! url('assets/bootstrap/css/bootstrap.min.css') !!}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/de1dfe309e.js" crossorigin="anonymous"></script>
 
     <style>
+      body{
+        background-color: #384065;
+      }
+
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
