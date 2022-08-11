@@ -23,7 +23,10 @@
         <i class="fa-solid fa-arrow-left text-white"></i><a class="text-decoration-none text-white mx-1" href="{{ url()->previous() }}">Go Back</a>
     </div>
     <div class="card bg-dark text-white col-xs-12 col-sm-12 col-md-12 mt-2 p-4">
-        <h1><strong>{{ $car->name }}</strong> {{ $car->model }}</h1>
+        <div class="d-flex justify-content-between align-items-center">
+            <h1><strong>{{ $car->name }}</strong> {{ $car->model }}</h1>
+            <span class="fs-5">Added by {{ $car->user->username}}</span>
+        </div>
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-4">

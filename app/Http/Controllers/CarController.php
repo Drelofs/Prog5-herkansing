@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Car;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use App\Models\User;
 
 
 class CarController extends Controller
@@ -35,7 +36,6 @@ class CarController extends Controller
             ->orWhere('description', 'LIKE', "%{$q}%")
             ->orWhere('model', 'LIKE', "%{$q}%")
             ->orWhere('year', 'LIKE', "%{$q}%")
-            // ->join('cars', 'cars.user_id', '=', 'users.id')
             ->get();
     
         // Return the search view with the resluts compacted

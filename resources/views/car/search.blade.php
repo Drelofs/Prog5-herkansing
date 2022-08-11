@@ -14,9 +14,9 @@
                         <img class="rounded" width="400" src="{{ asset('images/' . $car->image_path) }}">
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-8 px-4">
-                        {{-- <p>{{ $car->name }} {{ $car->model}} ({{ $car->year }})</p> --}}
                         <a class="text-decoration-none text-white" href="/car/{{ $car->id }}">
                             <h3><strong>{{ $car->name }}</strong> {{ $car->model}} ({{ $car->year }})</h3>
+                            <span>Added by {{ $car->user->username}}</span>
                         </a> 
                     </div>
                 </div>           
