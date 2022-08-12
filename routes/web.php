@@ -48,12 +48,16 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::get('/', 'HomeController@index')->name('user_dashboard');
     });
 
+    Route::middleware(['auth', 'isAdmin'])->group(function () {
+        Route::get('/admin', 'AdminController@index')->name('admin_dashboard');
+    });
+
     Route::resource('car', CarController::class)->middleware('auth');
     Route::get('search/', 'CarController@search')->name('search');
 
-    Route::middleware(['auth', 'isAdmin'])->group(function () {
-        Route::get('/admin', function () {
-          return view('admin.dashboard');
-        })->name('dashboard');
-    });
+    // Route::middleware(['auth', 'isAdmin'])->group(function () {
+    //     Route::get('/admin', function () {
+    //       return view('admin.dashboard');
+    //     })->name('dashboard');
+    // });
 });

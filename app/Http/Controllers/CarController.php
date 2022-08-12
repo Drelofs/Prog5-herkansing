@@ -9,6 +9,7 @@ use App\Models\Car;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use App\Models\User;
+use DateTime;
 
 
 class CarController extends Controller
@@ -60,6 +61,11 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
+        // $test = auth()->user()->created_at;
+        // $date  = new DateTime;
+        // $date->modify('-60 minutes');
+        // dd($date);
+
         $request->validate([
             'name' => 'required',
             'model' => 'required',
