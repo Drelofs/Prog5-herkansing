@@ -13,4 +13,13 @@ class AdminController extends Controller
 
         return view('admin.dashboard', compact('users'));
     }
+
+    public function changeStatus(Request $request)
+    {
+        $user = User::find($request->user_id);
+        $user->status = $request->status;
+        $user->save();
+  
+        return response()->json(['success'=>'Status change successfully.']);
+    }
 }

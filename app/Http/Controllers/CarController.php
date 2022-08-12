@@ -9,6 +9,7 @@ use App\Models\Car;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use DateTime;
 
 
@@ -113,7 +114,12 @@ class CarController extends Controller
      */
     public function edit(Car $car)
     {
-        return view('car.edit', compact('car'));
+        if (Auth::user()->id === $car->user_id){
+            return view('car.edit', compact('car'));
+        }
+        else{
+            return redirect()->back();
+        }
     }
 
     /**
@@ -125,33 +131,39 @@ class CarController extends Controller
      */
     public function update(Request $request, Car $car)
     {
-        $request->validate([
-            'name' => 'required',
-            'model' => 'required',
-            'year' => 'required',
-            'description'  => 'required',
-            'image' => 'mimes:jpeg,jpg,bmp,png|max:16384',
-            'price'  => 'required',
-        ]);
+        if (Auth::user()->id === $car->user_id){
+            $request->validate([
+                'name' => 'required',
+                'model' => 'required',
+                'year' => 'required',
+                'description'  => 'required',
+                'image' => 'mimes:jpeg,jpg,bmp,png|max:16384',
+                'price'  => 'required',
+            ]);
 
-        if($request->hasFile('image')){
-            $imageName = time() . '-' . $request->name . '.' . $request->image->extension();
-            $request->image->move(public_path('images'), $imageName);
-            File::delete(public_path("images/" . $car->image_path));
-        }
-        else{
-            $imageName = $car->image_path;
-        }
+            if($request->hasFile('image')){
+                $imageName = time() . '-' . $request->name . '.' . $request->image->extension();
+                $request->image->move(public_path('images'), $imageName);
+                File::delete(public_path("images/" . $car->image_path));
+            }
+            else{
+                $imageName = $car->image_path;
+            }
 
-        Car::where('id', $car->id)->update([
-            'name' => $request->input('name'),
-            'model' => $request->input('model'),
-            'year' => $request->input('year'),
-            'description' => $request->input('description'),
-            'price' => $request->input('price'),
-            'image_path' => $imageName
-        ]);       
-        return redirect()->route('car.index')->with('success', 'Car updated successfully.');
+            Car::where('id', $car->id)->update([
+                'name' => $request->input('name'),
+                'model' => $request->input('model'),
+                'year' => $request->input('year'),
+                'description' => $request->input('description'),
+                'price' => $request->input('price'),
+                'image_path' => $imageName
+            ]);       
+            return redirect()->route('car.index')->with('success', 'Car updated successfully.');
+        } 
+        else {
+            return redirect()->route('car.index')->with('failure', "Car is not yours!");
+        }
+        
     }
 
     /**

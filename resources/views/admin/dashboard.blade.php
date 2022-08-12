@@ -48,7 +48,9 @@
                                         {{ $row->created_at }}
                                     </td>
                                     <td class="text-right action_buttons">
-                                        
+                                        <input data-id="{{$row->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $row->status ? 'checked' : '' }}>
+                                        <meta name="csrf-token" content="{{ csrf_token() }}">
+                                        @csrf
                                     </td>
                                 </tr>
                                 @endforeach

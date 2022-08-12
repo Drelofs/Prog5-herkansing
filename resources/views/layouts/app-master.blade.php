@@ -11,6 +11,7 @@
     <!-- Bootstrap core CSS -->
     <link href="{!! url('assets/bootstrap/css/bootstrap.min.css') !!}" rel="stylesheet">
     <script src="https://kit.fontawesome.com/de1dfe309e.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     <style>
       body{
@@ -53,4 +54,25 @@
     <script src="{!! url('assets/bootstrap/js/bootstrap.bundle.min.js') !!}"></script>
       
   </body>
+  <script>
+    $(function() {
+      $('.toggle-class').change(function() {
+          var status = $(this).prop('checked') == true ? 1 : 0; 
+          var user_id = $(this).data('id'); 
+           
+          $.ajax({
+              type: "POST",
+              dataType: "json",
+              url: '/changeStatus',
+              headers: {
+                'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
+              },
+              data: {'status': status, 'user_id': user_id},
+              success: function(data){
+                console.log(data.success)
+              }
+          });
+      })
+    })
+  </script>
 </html>

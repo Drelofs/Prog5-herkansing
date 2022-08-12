@@ -35,7 +35,8 @@ class RegisterController extends Controller
             'username' => $request->input('username'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
-            'user_type' => 'Member'
+            'user_type' => 'Member',
+            'status' => 1
         ]
         );
 
