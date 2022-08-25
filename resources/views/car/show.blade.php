@@ -25,7 +25,7 @@
     <div class="card bg-dark text-white col-xs-12 col-sm-12 col-md-12 mt-2 p-4">
         <div class="d-flex justify-content-between align-items-center">
             <h1><strong>{{ $car->name }}</strong> {{ $car->model }}</h1>
-            <span class="fs-5">Added by {{ $car->user->username}}</span>
+            <span class="fs-5">Added by @if (auth()->user()->id === $car->user_id) you @else{{ $car->user->username}} @endif</span>
         </div>
         <div class="container">
             <div class="row">
