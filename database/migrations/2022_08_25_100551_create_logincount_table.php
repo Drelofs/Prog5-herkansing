@@ -13,8 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->boolean('status')->default(0);
+        Schema::create('logincount', function (Blueprint $table) {
+            $table->id();
+            $table->integer('user_id');
+            $table->integer('login_count');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('logincount');
     }
 };

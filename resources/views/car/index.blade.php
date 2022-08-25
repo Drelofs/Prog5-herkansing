@@ -11,7 +11,13 @@
                 <h4 class="card-title"> Your cars</h4>
             </div>
             <div class="card-body">
+                @if(!auth()->user()->status && auth()->user()->login_count->login_count > 5)
                 <a href="{{ route('car.create') }}" title="Create" class="btn btn-success">Add new car</a>
+                @elseif(auth()->user()->login_count->login_count < 5)
+                <span>You need to login at least 5 times before you can add cars</span>
+                @else
+                <span>Your account is deactivated. You can't add new cars</span>
+                @endif
                 <div>
                     <table class="table" id="product_table">
                         <thead class="text-white">
@@ -60,6 +66,7 @@
                                         {{ $row->created_at }}
                                     </td>
                                     <td class="text-right action_buttons">
+                                        @if(!auth()->user()->status)
                                         <a href="{{ route('car.show', $row->id) }}" title="Show Car" class="btn btn-light">Open</a>
                                         <a href="{{ route('car.edit', $row->id) }}" title="Edit" class="btn btn-light">Edit</a>
                                         @csrf
@@ -69,6 +76,7 @@
                                             {{ method_field('DELETE') }}
                                             <button class="btn btn-danger">Delete</button>
                                         </form>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach

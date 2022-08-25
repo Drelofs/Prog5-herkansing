@@ -65,6 +65,11 @@ class User extends Authenticatable
         return $this->hasmany(Car::class,'user_id','id');
     }
 
+    public function login_count()
+    {
+        return $this->hasOne(LoginCount::class,'user_id','id');
+    }
+
     /**
      * The attributes that should be cast.
      *

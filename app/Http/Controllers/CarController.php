@@ -67,30 +67,35 @@ class CarController extends Controller
         // $date->modify('-60 minutes');
         // dd($date);
 
-        $request->validate([
-            'name' => 'required',
-            'model' => 'required',
-            'year' => 'required|integer|min:1900|max:2022',
-            'description'  => 'required',
-            'image' => 'required|mimes:jpeg,jpg,bmp,png|max:16384',
-            'price'  => 'required',
-            'user_id' => 'required'
+        if(auth()->user()->login_count->login_count > 5 && !auth()->user()->status){
+            $request->validate([
+                'name' => 'required',
+                'model' => 'required',
+                'year' => 'required|integer|min:1900|max:2022',
+                'description'  => 'required',
+                'image' => 'required|mimes:jpeg,jpg,bmp,png|max:16384',
+                'price'  => 'required',
+                'user_id' => 'required'
 
-        ]);
+            ]);
 
-        $newImageName = time() . '-' . $request->name . '.' . $request->image->extension();
+            $newImageName = time() . '-' . $request->name . '.' . $request->image->extension();
 
-        $request->image->move(public_path('images'), $newImageName);
+            $request->image->move(public_path('images'), $newImageName);
 
-        $car = Car::create([
-            'name' => $request->input('name'),
-            'model' => $request->input('model'),
-            'year' => $request->input('year'),
-            'description' => $request->input('description'),
-            'price' => $request->input('price'),
-            'user_id' => auth()->id(),
-            'image_path' => $newImageName
-        ]);
+            $car = Car::create([
+                'name' => $request->input('name'),
+                'model' => $request->input('model'),
+                'year' => $request->input('year'),
+                'description' => $request->input('description'),
+                'price' => $request->input('price'),
+                'user_id' => auth()->id(),
+                'image_path' => $newImageName
+            ]);
+        }
+        else{
+            return redirect()->route("car.index")->with("error", "You can't add cars");
+        }
              
         return redirect()->route('car.index')->with('success', 'Car created successfully.');
     }
