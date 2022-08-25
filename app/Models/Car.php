@@ -19,6 +19,7 @@ class Car extends Model
         'year',
         'description',
         'price',
+        'type',
         'created_at',
         'image_path',
         'user_id'

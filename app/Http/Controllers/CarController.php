@@ -89,6 +89,7 @@ class CarController extends Controller
                 'year' => $request->input('year'),
                 'description' => $request->input('description'),
                 'price' => $request->input('price'),
+                'type' => $request->input('type'),
                 'user_id' => auth()->id(),
                 'image_path' => $newImageName
             ]);

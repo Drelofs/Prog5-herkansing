@@ -52,6 +52,18 @@
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 my-2">
                         <div class="form-group">
+                            <label>Type:</label>
+                            <select name="type" class="form-control" id="type-select">
+                                <option value="">--Please choose an option--</option>
+                                <option value="SUV">SUV</option>
+                                <option value="Hatchback">Hatchback</option>
+                                <option value="Convertible">Convertible</option>
+                                <option value="Sedan">Sedan</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 my-2">
+                        <div class="form-group">
                             <label>Description:</label>
                             <textarea class="form-control" style="height:50px" name="description"
                                 placeholder="Description"></textarea>

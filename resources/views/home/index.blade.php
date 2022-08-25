@@ -11,6 +11,7 @@
                             <img src="{{ asset('images/' . $car->image_path) }}" class="card-img-top" alt="{{ $car->name}}">
                             <div class="card-body">
                                 <h5 class="card-title"><strong>{{ $car->name }}</strong> {{ $car->model }} ({{$car->year}})</h5>
+                                <span class="d-block"><i>{{ $car->type }}</i></span>
                                 <span class="text-info">Added by {{ $car->user->username}}</span>
                                 <p class="card-text">{{ $car->description }}</p>
                                 <a href="/car/{{ $car->id }}" class="btn btn-light">Show</a>

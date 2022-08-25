@@ -48,6 +48,9 @@
                         <strong>Year: </strong><span>{{ $car->year }}</span>
                     </div>
                     <div class="d-block">
+                        <strong>Type: </strong><span>{{ $car->type }}</span>
+                    </div>
+                    <div class="d-block">
                         <strong>Price: </strong><span>€{{ number_format($car->price) }}</span>
                     </div>
                     <div class="d-block mt-4">
