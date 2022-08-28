@@ -28,7 +28,7 @@
                             </th>
                        
                             <th class="text-right">
-                                Deactivate?
+                                Status
                             </th>
                         </thead>
                         <tbody class="text-white">

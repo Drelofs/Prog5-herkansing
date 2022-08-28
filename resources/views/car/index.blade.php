@@ -11,7 +11,7 @@
                 <h4 class="card-title"> Your cars</h4>
             </div>
             <div class="card-body">
-                @if(!auth()->user()->status && auth()->user()->login_count->login_count > 5)
+                @if(auth()->user()->status && auth()->user()->login_count->login_count > 5)
                 <a href="{{ route('car.create') }}" title="Create" class="btn btn-success">Add new car</a>
                 @elseif(auth()->user()->login_count->login_count < 5)
                 <span>You need to login at least 5 times before you can add cars</span>

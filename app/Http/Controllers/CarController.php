@@ -67,7 +67,7 @@ class CarController extends Controller
         // $date->modify('-60 minutes');
         // dd($date);
 
-        if(auth()->user()->login_count->login_count > 5 && !auth()->user()->status){
+        if(auth()->user()->login_count->login_count > 5 && auth()->user()->status){
             $request->validate([
                 'name' => 'required',
                 'model' => 'required',
